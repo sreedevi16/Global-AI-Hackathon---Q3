@@ -54,16 +54,6 @@ literature → hypothesis → planner → runner → analysis
 - **Shared record:** the director logs every step (inputs, outputs, numbers, file names) to `research_log.md`. Every script the runner executes is kept in `lab_runs/`.
 - **Labelling:** agent-generated ideas are marked `HYPOTHESIS`. Agents are told never to invent numbers, datasets or citations.
 
----
-
-## Safety, controls and human approval
-
-- **Human approval:** the director's instructions require it to ask the human to approve (a) the dataset and model choice and (b) each experiment before it runs. *This is enforced by the director's prompt, not by a hard technical block.*
-- **Restricted execution:** the Antigravity SDK blocks its built-in shell by default. Code runs only through two small tools in `lab_tools.py`:
-  - `run_python(code)`: runs a script, saves it to `lab_runs/`, returns exit code, stdout and stderr (output clipped).
-  - `pip_install(packages)`: accepts plain package names only; rejects flags and URLs.
-- **Honest uncertainty:** results are reported with confidence intervals and compared to baselines and published values.
-- **Validation still needed before real-world use:** zero-shot scores are a screening signal, not a ΔΔG measurement. Any candidate mutation would need experimental validation (e.g. thermal-shift or similar stability assays) before it informs a design decision.
 
 ---
 
@@ -119,9 +109,6 @@ omnigent run protein_stability_lab_v2.yaml
 |---|---|
 | `protein_stability_lab_v2.yaml` | Agent specifications and rules: the director plus five sub-agents |
 | `lab_tools.py` | The runner's `run_python` and `pip_install` tools |
-| `research_log.md` | Written by the director during a run (`TODO:` include from your run) |
-| `lab_runs/` | Every script the runner executed (`TODO:` include from your run) |
-| `results/` | `TODO:` per-mutation scores and the results table |
 
 ---
 
